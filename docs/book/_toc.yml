@@ -1,0 +1,41 @@
+format: jb-book
+root: index
+parts:
+  - caption: Coding in Python
+    numbered: True
+    chapters:
+    - file: python/intro
+    - file: python/StandardLibrary
+    - file: python/ExceptionsIO
+    - file: python/OOP
+    - file: python/NumPy
+    - file: python/Pandas
+    - file: python/Matplotlib
+    - file: python/SciPy
+    - file: python/DocStrings
+    - file: python/UnitTesting
+  - caption: Git and GitHub
+    numbered: True
+    chapters:
+    - file: git/intro
+  - caption: OG Macro Model
+    numbered: True
+    chapters:
+    - file: OG/intro
+    - file: OG/Install
+    - file: OG/Simulation
+    - file: OG/Output
+    - file: OG/Calibration
+      sections:
+      - file: OG/Demographics
+      - file: OG/MacroParams
+      - file: OG/FiscalParams
+      - file: OG/Earnings
+  - caption: Appendix
+    chapters:
+    - file: appendix/glossary
+    - file: appendix/intro
+    - file: python/UN-OG-Training_AnswerTemplate.ipynb
+  - caption: References
+    chapters:
+    - file: UN-OG-Training_references
