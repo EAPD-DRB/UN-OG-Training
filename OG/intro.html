@@ -1,0 +1,604 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>13. Overlapping Generations Macro Model &#8212; UN OG-Core Overlapping Generations Model Training</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=9e0bd4b9" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'OG/intro';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="14. Installing OG-Core" href="Install.html" />
+    <link rel="prev" title="12. Git and GitHub" href="../git/intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/UN-OG-Training_logo_long.png" class="logo__image only-light" alt="UN OG-Core Overlapping Generations Model Training - Home"/>
+    <script>document.write(`<img src="../_static/UN-OG-Training_logo_long.png" class="logo__image only-dark" alt="UN OG-Core Overlapping Generations Model Training - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    United Nations OG-Core Overlapping Generations Model Training
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding in Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python/intro.html">1. Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/StandardLibrary.html">2. Python Standard Library</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../python/ExceptionsIO.html">4. Exception Handling and File Input/Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/OOP.html">5. Object Oriented Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/NumPy.html">6. NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/Pandas.html">7. Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/Matplotlib.html">8. Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/SciPy.html">9. SciPy: Root finding, minimizing, interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/DocStrings.html">10. Docstrings and Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/UnitTesting.html">11. Unit Testing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git and GitHub</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../git/intro.html">12. Git and GitHub</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OG Macro Model</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. Overlapping Generations Macro Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Install.html">14. Installing <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulation.html">15. Simulating <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Output.html">16. <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code> Output</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Calibration.html">17. Calibrating the <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code> model</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Demographics.html">17.1. Demographics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MacroParams.html">17.2. Macro parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FiscalParams.html">17.3. Fiscal Policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Earnings.html">17.4. Earnings Processes</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendix/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/intro.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/UN-OG-Training_AnswerTemplate.html">UN OG Training: Exercise Answer Template</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../UN-OG-Training_references.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/EAPD-DRB/UN-OG-Training" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/EAPD-DRB/UN-OG-Training/issues/new?title=Issue%20on%20page%20%2FOG/intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/OG/intro.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Overlapping Generations Macro Model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-comparison-to-other-macro-models">13.1. A Comparison to Other Macro Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-overview-of-og-core">13.2. An Overview of OG-Core</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#country-calibrations-of-og-core">13.3. Country Calibrations of OG-Core</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#footnotes">13.4. Footnotes</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="overlapping-generations-macro-model">
+<span id="chap-ogintro"></span><h1><span class="section-number">13. </span>Overlapping Generations Macro Model<a class="headerlink" href="#overlapping-generations-macro-model" title="Link to this heading">#</a></h1>
+<p>The model we are training you to use is called <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code>. “OG” refers to the model being an overlapping generations model. “Core” refers to the fact that the model is a core model, meaning that it is a foundational model that can then be parameterized to represent a specific economy.</p>
+<p>The phrase “overlapping generations” refers to a key feature of this class of model, which is that there are multiple generations of economic agents (individuals or households) whose lives overlap. That is, at any point in time, there are several generations of agents living and making economic decisions.  Thus, if one would like to do any analysis of intergenerational transfers (e.g., through a public pension system or through environmental policies that impose costs today to have benefits in the future), then one needs to use an overlapping generations model.<a class="footnote-reference brackets" href="#citation-note" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+<p>To further describe <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code>, it is a dynamic, general equilibrium, overlapping generations model.  The adjective “dynamic” refers to the model accounting for the dimension of time. Agents are forward looking and consider tradeoffs between today and the future. The adjective “general equilibrium” refers to the model accounting for the fact that all markets are in equilibrium.  That is, the model is a system of equations that are solved simultaneously.  By imposing an equilibrium on the model, we are ensuring consistency in the choices economic agents make and aggregate outcomes.</p>
+<p>There are two types of equilibria we solve for when solving the <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code> model.  One is the steady-state equilibrium, which represents the economy in the vary long run, when policy has been stabilized and all variables are growing at the same rate.  The other is the transition path equilibrium, which represents the economy from the short run up to the long-run steady state.  Over the transition path, policy may vary and variables may be growing at different rates.  We refer the reader to the detailed <a class="reference external" href="https://pslmodels.github.io/OG-Core/content/intro/intro.html"><code class="docutils literal notranslate"><span class="pre">OG-Core</span></code> documentation</a> for a full characterization of these equilibria.  But it is important to note that the <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code> model is a general equilibrium model that solves for both the steady-state equilibrium and the transition path equilibrium.  And in the model solution algorithm, one much work backwards in time - solving for the steady-state equilibrium first and then solving for the transition path equilibrium.</p>
+<section id="a-comparison-to-other-macro-models">
+<h2><span class="section-number">13.1. </span>A Comparison to Other Macro Models<a class="headerlink" href="#a-comparison-to-other-macro-models" title="Link to this heading">#</a></h2>
+<p>There are essentially six types of macroeconomic models that are used for policy analysis.  These are: (1) Econometric macroeconomic models, (2) Solow growth models, (3) DSGE models, (4) CGE models, (5) Hybrid macro models, and (6) Overlapping generations models.  We briefly describe each of these models and their strengths and weaknesses.</p>
+<p>Econometric models are used to predict future outcomes based on past data, using a statistical model. These models can be fairly accurate in predicting the trajectory of the economy if there are no policy changes.  However, these models are not well suited for counterfactual policy analysis, since changes in policy often affect the relationships between macroeconomic variables and therefore the statistical model is not well suited for predicting the future.  These models are often used to form a baseline for policy analysis.</p>
+<p>The Solow growth model is a foundational model in macroeconomics and underlies many modern macroeconomic models. The Solow model is a dynamic model and can account for counterfactual policy.  However, the Solow model uses a representative agent, so it cannot do distributional analysis.  The Solow model also uses an infinitely-lived agent, so it cannot do intergenerational analysis.  The Solow model is best suited for long-run analysis.</p>
+<p>Dynamic Stochastic General Equilibrium (DSGE) models can model the short and long run and can be used for counter-factual policy analysis. These models can have heterogeneous agents, so they can do distributional analysis.  However, DSGE models use an infinitely-lived agent, so they cannot do intergenerational analysis.  DSGE models are also typically solved with methods that are not suitable for large policy changes, since they use approximations to solve the model.  This limits there use for analysis of significant policy changes or large economic shocks.</p>
+<p>Computable General Equilibrium (CGE) models typically refer to a specific type of CGE model, despite the fact that many classes of models (Solow, DSGE, OG) are all solve for a general equilibrium using computational methods.  CGE usually refers to models that have a rich specification of the economy (e.g., heterogeneous agents and many production sectors), but that models economic decision makers in a static way. That is, CGE models do not account for the dimension of time.  CGE models have become less common in recent years in favor of dynamic models that account for the dimension of time.  However, CGE models still have wide use in regional analysis and in trade analysis, where its important to be able to model very detailed geographies or industrial sectors.</p>
+<p>Hybrid macroeconomic models are not commonly used, but some important policy institutions use them, such as the United States’ Joint Committee on Taxation.  These models have a long run equilibrium similar to the steady-state of an OG model.  And they do allow modeling of both the short and long run, include heterogenous agents, and finitely-lived agents (therefore can do intergenerational analysis).  However, in the short run, agents are myopic and the model is not in equilibrium.  This limits the usefulness of these models for policy analysis.</p>
+<p>OG models typically feature some of the best components from each of these: forward looking agents, finitely-lived agents allowing for intergenerational analysis, heterogeneous agents, a modeling of the economy’s general equilibrium in the short and long run.  The code these features impose is a more complex and computationally costly solution algorithm.  However, the solution algorithm is global and therefore can accommodate large policy changes.  This makes OG models well suited for policy analysis.  And in the design of OG-Core, we’ve leveraged tools of high performance computing to make the solution algorithm as efficient as possible.</p>
+</section>
+<section id="an-overview-of-og-core">
+<h2><span class="section-number">13.2. </span>An Overview of OG-Core<a class="headerlink" href="#an-overview-of-og-core" title="Link to this heading">#</a></h2>
+<p>Details of the OG-Core model are available in its <a class="reference external" href="https://pslmodels.github.io/OG-Core/content/intro/intro.html">online documentation</a>.  Here we provide a brief overview of the model and its solution algorithm.</p>
+<p>On the demand side, the OG-Core framework models agents (households or individuals) who live up to <code class="docutils literal notranslate"><span class="pre">S</span></code> economically active periods from age <code class="docutils literal notranslate"><span class="pre">E</span></code> to <code class="docutils literal notranslate"><span class="pre">E+S</span></code>, where <code class="docutils literal notranslate"><span class="pre">E</span></code> is the age they become economically active. In each period of life, agents choose how much to consume, work, and save. Their consumption choices are made across <code class="docutils literal notranslate"><span class="pre">I</span></code> different consumption goods.  A new generation of agents is born each model period, and these size of these generations is determined by demographic projections taken from outside the model.  In each generation there are <code class="docutils literal notranslate"><span class="pre">J</span></code> different types of agents who differ in their lifetime labor productivity profiles, the relative value they place in intentional bequests and their time discount rate (i.e., their amount of patience when waiting for a future payoff).</p>
+<p>The supply side of the economy is comprised of a representative firm for each of <code class="docutils literal notranslate"><span class="pre">M</span></code> production industries.  These firms use capital, labor, and public infrastructure to produce their differentiated output good via a constant elasticity of substitution production function that displays constant returns to scale. These output goods are combined in a fixed way to produce the <code class="docutils literal notranslate"><span class="pre">I</span></code> consumption goods.  A simplification made in the model solution is that the capital good (used for investment in private capital and government infrastructure) is produced by just one industry, usually calibrated to the manufacturing sector.</p>
+<p>The government sector can impose taxes on income (personal and corporate), wealth, bequests, and consumption. These revenues are used to finance government spending on public infrastructure investment, a public good (that does not affect agents’ utility), and transfer payments to households.  The government can also borrow or save in private capital markets.  The government is able to run budget deficits over the transitio path, however, the model enforces a government budget constraint in the steady-state equilibrium so that debt cannot grow faster than the economy in the long run.</p>
+<p>The rest of the world is modeled simply.  Individuals migrate in and out based on an exogenous, but time varying, process for immigration. Net capital flows into and out of the economy, supporting private capital investment and government borrowing.</p>
+<p>The market clearing conditions ensure that in each period, the supply of labor from the <code class="docutils literal notranslate"><span class="pre">SxJ</span></code> household is equal to the total demand from labor from the <code class="docutils literal notranslate"><span class="pre">M</span></code> firms.  Total supply of savings from households must match the total demand for savings from the government’s borrowing and from the firms use of capital. Finally, the total demand for consumption goods from households must equal the total supply of consumption goods as determined from the firms’ production of the <code class="docutils literal notranslate"><span class="pre">M</span></code> output goods and their mapping into the <code class="docutils literal notranslate"><span class="pre">I</span></code> consumption goods.</p>
+</section>
+<section id="country-calibrations-of-og-core">
+<h2><span class="section-number">13.3. </span>Country Calibrations of OG-Core<a class="headerlink" href="#country-calibrations-of-og-core" title="Link to this heading">#</a></h2>
+<p>As described above, <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code> is a foundational and general model.  It has all the pieces, but it doesn’t represent any specific economy.  To represent a specific economy, one must calibrate the model to that economy.  This involves setting the values of the parameters of the model to so that the model output matches that of the economy you wish to model.  <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code> has thousands of parameters, so this can be a significant task.  Some current country-specific calibrations (with varying degrees of detail) have been done for the <a class="reference external" href="https://github.com/PSLmodels/OG-USA">United States</a>, the <a class="reference external" href="https://github.com/PSLmodels/OG-UK">United Kingdom</a>, <a class="reference external" href="https://github.com/EAPD-DRB/OG-ZAF">South Africa</a>, <a class="reference external" href="https://github.com/Revenue-Academy/OG-IND">India</a>, and <a class="reference external" href="https://github.com/Revenue-Academy/OG-MYS">Malaysia</a>.</p>
+<p>Each of these country calibrations can be used a examples when creating a calibration of a country of interest to you.  In chapters that follow, we’ll provide some more details on how part of this calibration are done and give you example exercises related to the calibration process to hel you better understand it.</p>
+<p>What comes out of these calibration packages is a <code class="docutils literal notranslate"><span class="pre">Calibration</span></code> class object that contains new parameter values and that can be used to update teh <code class="docutils literal notranslate"><span class="pre">Specifications</span></code> class object that is passed to the <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code> model and that represents the parameterization of the model.  We will describe this process in more detail in the chapters that follow.</p>
+</section>
+<section id="footnotes">
+<span id="secogintrofootnotes"></span><h2><span class="section-number">13.4. </span>Footnotes<a class="headerlink" href="#footnotes" title="Link to this heading">#</a></h2>
+<p>The footnotes from this chapter.</p>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="citation-note" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>For examples of OG modesl used for policy analysis, see <span id="id2">[<a class="reference internal" href="../UN-OG-Training_references.html#id7" title="Alan J. Auerbach, Laurence J. Kotlikoff, and Jonathan Skinner. The efficiency gains from dynamic tax reform. NBER Working Paper 819, National Bureau of Economic Research, December 1981.">Auerbach <em>et al.</em>, 1981</a>, <a class="reference internal" href="../UN-OG-Training_references.html#id8" title="Alan J. Auerbach, Laurence J. Kotlikoff, and Jonathan Skinner. The efficiency gains from dynamic tax reform. International Economic Review, 24(1):81-100, February 1983.">Auerbach <em>et al.</em>, 1983</a>]</span>, <span id="id3">[<a class="reference internal" href="../UN-OG-Training_references.html#id5" title="Alan J. Auerbach and Laurence J. Kotlikoff. An examination of empirical tests of Social Security and savings. In Elhanan Helpman, Assaf Razin, and Efraim Sadka, editors, Social Policy Evaluation: An Economic Perspective, chapter Chap. 8, pages pp. 161-179. Academic Press, 1983.">Auerbach and Kotlikoff, 1983</a>, <a class="reference internal" href="../UN-OG-Training_references.html#id4" title="Alan J. Auerbach and Laurence J. Kotlikoff. Investment versus savings incentives: the size of the bang for the buck and the potential for self-financing business tax cuts. In Lawrence. H. Meyer, editor, The Economic Consequences of Government Deficits, Economic Policy Conference Series, chapter Chap. 4, pages pp. 121-149. Kluwer-Nijhoff Publishing, 1983.">Auerbach and Kotlikoff, 1983</a>, <a class="reference internal" href="../UN-OG-Training_references.html#id3" title="Alan J. Auerbach and Laurence J. Kotlikoff. National savings, economic welfare, and the structure of taxation. In Martin Feldstein, editor, Behavioral Simulation Methods in Tax Policy Analysis, chapter Chap. 13, pages pp. 459-498. University of Chicago Press, 1983.">Auerbach and Kotlikoff, 1983</a>]</span>, and <span id="id4">[<a class="reference internal" href="../UN-OG-Training_references.html#id6" title="Alan J. Auerbach and Laurence J. Kotlikoff. Simulating alternative Social Security responses to the demographic transition. National Tax Journal, 38(2):153-168, June 1985.">Auerbach and Kotlikoff, 1985</a>]</span>.</p>
+</aside>
+</aside>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./OG"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../git/intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Git and GitHub</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Install.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Installing <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-comparison-to-other-macro-models">13.1. A Comparison to Other Macro Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-overview-of-og-core">13.2. An Overview of OG-Core</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#country-calibrations-of-og-core">13.3. Country Calibrations of OG-Core</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#footnotes">13.4. Footnotes</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jason DeBacker and Richard W. Evans
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,673 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Introduction to Python &#8212; UN OG-Core Overlapping Generations Model Training</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=9e0bd4b9" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python/intro';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Python Standard Library" href="StandardLibrary.html" />
+    <link rel="prev" title="United Nations OG-Core Overlapping Generations Model Training" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/UN-OG-Training_logo_long.png" class="logo__image only-light" alt="UN OG-Core Overlapping Generations Model Training - Home"/>
+    <script>document.write(`<img src="../_static/UN-OG-Training_logo_long.png" class="logo__image only-dark" alt="UN OG-Core Overlapping Generations Model Training - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    United Nations OG-Core Overlapping Generations Model Training
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding in Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StandardLibrary.html">2. Python Standard Library</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="ExceptionsIO.html">4. Exception Handling and File Input/Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OOP.html">5. Object Oriented Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NumPy.html">6. NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pandas.html">7. Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Matplotlib.html">8. Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SciPy.html">9. SciPy: Root finding, minimizing, interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DocStrings.html">10. Docstrings and Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnitTesting.html">11. Unit Testing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git and GitHub</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../git/intro.html">12. Git and GitHub</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OG Macro Model</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../OG/intro.html">13. Overlapping Generations Macro Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OG/Install.html">14. Installing <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OG/Simulation.html">15. Simulating <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OG/Output.html">16. <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code> Output</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../OG/Calibration.html">17. Calibrating the <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code> model</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../OG/Demographics.html">17.1. Demographics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OG/MacroParams.html">17.2. Macro parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OG/FiscalParams.html">17.3. Fiscal Policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OG/Earnings.html">17.4. Earnings Processes</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendix/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/intro.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UN-OG-Training_AnswerTemplate.html">UN OG Training: Exercise Answer Template</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../UN-OG-Training_references.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/EAPD-DRB/UN-OG-Training" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/EAPD-DRB/UN-OG-Training/issues/new?title=Issue%20on%20page%20%2Fpython/intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/python/intro.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-python">1.1. Overview of Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-python">1.2. Installing Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-python">1.3. Working with Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-packages">1.4. Python Packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-training-topics">1.5. Python Training Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-using-the-unix-shell">1.6. (Optional): Using the Unix Shell</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">1.7. Exercises</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-python">
+<span id="chap-pythonintro"></span><h1><span class="section-number">1. </span>Introduction to Python<a class="headerlink" href="#introduction-to-python" title="Link to this heading">#</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code> model, as well as the country-specific calibration packages, are written in the Python programming language. These training materials will provide you with sufficient background with Python and some of its most-used packages for data science that you will be able to understand and contribute to the source code underlying <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code> and the calibration packages. We assume some basic background with mathematics, economics, and programming, but we do not assume any prior knowledge of Python.</p>
+<p>As we walk you through the basics of Python, we will leverage some excellent open source materials put together by <a class="reference external" href="https://quantecon.org/">QuantEcon</a> and the <a class="reference external" href="https://acme.byu.edu/2023-2024-materials">Applied and Computational Mathematics Emphasis at BYU (BYU ACME)</a>. And while we will point you to their tutorials, we have customized all our excercises to be relevant to the <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code> model and the calibration packages.</p>
+<section id="overview-of-python">
+<span id="secpythonintrooverview"></span><h2><span class="section-number">1.1. </span>Overview of Python<a class="headerlink" href="#overview-of-python" title="Link to this heading">#</a></h2>
+<p>The <a class="reference external" href="http://Python.org">Python.org</a> site has documentation essays, one of which is entitled “<a class="reference external" href="https://www.python.org/doc/essays/blurb/">What is Python? Executive Summary</a>”. The first paragraph contains the following description.</p>
+<blockquote>
+<div><p>Python is an interpreted, object-oriented, high-level programming language with dynamic semantics. Its high-level built in data structures, combined with dynamic typing and dynamic binding, make it very attractive for Rapid Application Development, as well as for use as a scripting or glue language to connect existing components together. Python’s simple, easy to learn syntax emphasizes readability and therefore reduces the cost of program maintenance. Python supports modules and packages, which encourages program modularity and code reuse. The Python interpreter and the extensive standard library are available in source or binary form without charge for all major platforms, and can be freely distributed.</p>
+</div></blockquote>
+<p>In addition to the description above, Python is an open source programming language that is freely available and customizable (see <a class="reference external" href="https://www.python.org/downloads/source/">https://www.python.org/downloads/source/</a>).</p>
+<p>Python has some built in functionality with the standard library, but most of the functionality comes from packages that are developed by the open source community. The most important packages for data science are: NumPy, SciPy, Pandas, and Matplotlib.  We will introduce each of these packages as we go through the training materials as they are used heavily in <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code> and the corresponding country calibration packages.</p>
+</section>
+<section id="installing-python">
+<span id="secpythonintroinstall"></span><h2><span class="section-number">1.2. </span>Installing Python<a class="headerlink" href="#installing-python" title="Link to this heading">#</a></h2>
+<p>We recommend that you download the Anaconda distribution of Python provided by <a class="reference external" href="https://www.anaconda.com/download">Anaconda</a>. We also recommend the most recent stable version of Python, which is currently Python 3.11. This can be done from the <a class="reference external" href="https://www.anaconda.com/download">Anaconda download page</a> for Windows, Mac OSX, and Linux machines. The code we will be writing uses common Python libraries such as <code class="docutils literal notranslate"><span class="pre">NumPy</span></code>, <code class="docutils literal notranslate"><span class="pre">SciPy</span></code>, <code class="docutils literal notranslate"><span class="pre">pickle</span></code>, <code class="docutils literal notranslate"><span class="pre">os</span></code>, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, and <code class="docutils literal notranslate"><span class="pre">time</span></code>, which are all included in the Anaconda distribution. If you are using a different distribution of Python, you may need to install these packages separately.</p>
+</section>
+<section id="working-with-python">
+<span id="secpythonintroworkingwith"></span><h2><span class="section-number">1.3. </span>Working with Python<a class="headerlink" href="#working-with-python" title="Link to this heading">#</a></h2>
+<p>There are several ways to interact with Python:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://jupyter.org/">Jupyter Notebook</a></p></li>
+<li><p>iPython session</p></li>
+<li><p>Running a Python script from the command line</p></li>
+<li><p>Running a Python script from an IDE such as <a class="reference external" href="https://www.spyder-ide.org/">Spyder</a>.</p></li>
+</ol>
+<p>In our recommended Python development workflow, you will write Python scripts and modules (<code class="docutils literal notranslate"><span class="pre">*.py</span></code> files) in a text editor. Then you will run those scripts from your terminal. You will want a capable text editor for developing your code. Many capable text editors exist, but we recommend <a class="reference external" href="https://code.visualstudio.com">Visual Studio Code</a> (VS Code). As you learn Python and complete the exercises in this training program, you will also use Python interactively in a Jupyter Notebook or iPython session. VS Code will be helpful here as well as it will allow you open Jupyter Notebooks and run Python interactively through the text editor.</p>
+<p>VS Code is free and will be included with your installation of Anaconda. This is a very capable text editor and will include syntax highlighting for Python and and built in Git controls. In addition to the basics, you may want to use a more advanced linter for Python. This will help you correct syntax errors on the fly and provide helpful information as you declare objects and call functions. <a class="reference external" href="https://code.visualstudio.com/docs/python/linting">This link</a> provides step-by-step instructions on using more advanced linting in VS Code.</p>
+<p>Some extensions that we recommend installing into your VS Code:</p>
+<ul class="simple">
+<li><p>cornflakes-linter</p></li>
+<li><p>Git Extension Pack</p></li>
+<li><p>GitLens</p></li>
+<li><p>Jupyter</p></li>
+<li><p>Markdown All in One</p></li>
+<li><p>Pylance</p></li>
+</ul>
+<p>In addition, <a class="reference external" href="https://github.com/features/copilot">GitHub Copilot</a> is an amazing resource and can be added as an extension to VS Code. However, this service is not free of charge and does require an internet connection to work.</p>
+<p>In the iframe below is a PDF of the BYU ACME open-access lab entitled, “Python Intro”. You can either scroll through the lab on this page using the iframe window, or you can download the PDF for use on your computer. See <span id="id1">[<a class="reference internal" href="../UN-OG-Training_references.html#id22" title="BYU ACME. Introduction to python. In BYU ACME 2023-2024 Incoming Junior Materials, chapter 2. 2023. URL: https://acme.byu.edu/2023-2024-materials.">BYU ACME, 2023</a>]</span>. <a class="reference internal" href="#ExerPythonIntro"><span class="std std-numref">Exercise 1.1</span></a> below has you work through the problems in this BYU ACME lab. The Python code file (<a class="reference external" href="https://github.com/EAPD-DRB/UN-OG-Training/tree/main/code/PythonIntro/python_intro.py"><code class="docutils literal notranslate"><span class="pre">python_intro.py</span></code></a>) used in the lab is stored in the <a class="reference external" href="https://github.com/EAPD-DRB/UN-OG-Training/tree/main/code/PythonIntro"><code class="docutils literal notranslate"><span class="pre">./code/PythonIntro/</span></code></a> directory.</p>
+<div>
+  <iframe id="inlineFrameExample"
+      title="Inline Frame Example"
+      width="100%"
+      height="700"
+      src="https://drive.google.com/file/d/1CHl8C-QKgs8jHzsRfJSMWkVqq0elzP1F/preview?usp=sharing">
+  </iframe>
+</div>
+<p>We cover Python’s built-in functions, constants, and data types and their properties in <a class="reference internal" href="StandardLibrary.html#ExerStandardLibrary"><span class="std std-numref">Exercise 3.1</span></a> of the <a class="reference internal" href="StandardLibrary.html#chap-stdlib"><span class="std std-ref">Python Standard Library</span></a> chapter. We also introduce different commonly used objects like Numpy arrays and operations in chapter <a class="reference internal" href="NumPy.html#chap-numpy"><span class="std std-ref">NumPy</span></a> and Pandas DataFrames and operations in chapter <a class="reference internal" href="Pandas.html#chap-pandas"><span class="std std-ref">Pandas</span></a>.</p>
+</section>
+<section id="python-packages">
+<span id="secpythonintropackages"></span><h2><span class="section-number">1.4. </span>Python Packages<a class="headerlink" href="#python-packages" title="Link to this heading">#</a></h2>
+<p>When using <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code> there are a handful of Python packages that will be useful and that these training materials will cover:</p>
+<ol class="arabic simple">
+<li><p>The Standard Library</p></li>
+<li><p>NumPy for numerical computing (e.g., arrays, linear algebra, etc.)</p></li>
+<li><p>Pandas for data analysis</p></li>
+<li><p>Matplotlib for plotting</p></li>
+<li><p>SciPy for scientific computing (e.g., optimization, interpolation, etc.)</p></li>
+</ol>
+<p>All of these will be included as part of your installation of Anaconda.  Anaconda also includes a package manager called <code class="docutils literal notranslate"><span class="pre">conda</span></code> that will allow you to install additional packages and well help keep versions of packages consistent with each other.  We will not cover this in these training materials, but you can find more information about <code class="docutils literal notranslate"><span class="pre">conda</span></code> <a class="reference external" href="https://docs.conda.io/en/latest/">here</a> and you’ll find references to <code class="docutils literal notranslate"><span class="pre">conda</span></code> as we install the <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code> package in the latter part of these training materials.</p>
+</section>
+<section id="python-training-topics">
+<span id="secpythonintrotopics"></span><h2><span class="section-number">1.5. </span>Python Training Topics<a class="headerlink" href="#python-training-topics" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="StandardLibrary.html"><span class="std std-doc">Python Standard Library</span></a></p></li>
+<li><p><a class="reference internal" href="ExceptionsIO.html"><span class="std std-doc">Exception handling and file input/output</span></a></p></li>
+<li><p><a class="reference internal" href="OOP.html"><span class="std std-doc">Object Oriented Programming</span></a></p></li>
+<li><p><a class="reference internal" href="NumPy.html"><span class="std std-doc">NumPy</span></a></p></li>
+<li><p><a class="reference internal" href="Pandas.html"><span class="std std-doc">Pandas</span></a></p></li>
+<li><p><a class="reference internal" href="Matplotlib.html"><span class="std std-doc">Matplotlib</span></a></p></li>
+<li><p><a class="reference internal" href="SciPy.html"><span class="std std-doc">SciPy</span></a></p></li>
+<li><p><a class="reference internal" href="DocStrings.html"><span class="std std-doc">Doc strings and documentation</span></a></p></li>
+<li><p><a class="reference internal" href="UnitTesting.html"><span class="std std-doc">Unit testing</span></a></p></li>
+</ol>
+</section>
+<section id="optional-using-the-unix-shell">
+<span id="secpythonintrounix"></span><h2><span class="section-number">1.6. </span>(Optional): Using the Unix Shell<a class="headerlink" href="#optional-using-the-unix-shell" title="Link to this heading">#</a></h2>
+<p>Unix is an old operating system that is the basis for the Linux and Mac operating systems. Many Python users with Mac or Linux operating systems follow a workflow that includes working in the terminal and using Unix commands. This section is optional because Windows terminals do not have the same Unix commands. For those interested, feel free to work through the Unix lab below from BYU ACME. This lab features great examples and instruction, and also has seven good exercises for you to practice on.</p>
+<p>In the iframe below is a PDF of the BYU ACME open-access lab entitled, “Unix Shell 1: Introduction”. You can either scroll through the lab on this page using the iframe window, or you can download the PDF for use on your computer. See <span id="id2">[<a class="reference internal" href="../UN-OG-Training_references.html#id25" title="BYU ACME. Unix shell 1: introduction. In BYU ACME 2023-2024 Incoming Junior Materials, chapter 1. 2023. URL: https://acme.byu.edu/2023-2024-materials.">BYU ACME, 2023</a>]</span>. <a class="reference internal" href="#ExerUnix1"><span class="std std-numref">Exercise 1.2</span></a> below has you work through the problems in this BYU ACME lab. The shell script file (<a class="reference external" href="https://github.com/EAPD-DRB/UN-OG-Training/tree/main/code/UnixShell1/unixshell1.sh"><code class="docutils literal notranslate"><span class="pre">unixshell1.sh</span></code></a>) used in the lab, along with the associated zip file (<a class="reference external" href="https://github.com/EAPD-DRB/UN-OG-Training/tree/main/code/UnixShell1/Shell1.zip"><code class="docutils literal notranslate"><span class="pre">Shell1.zip</span></code></a>), are stored in the <a class="reference external" href="https://github.com/EAPD-DRB/UN-OG-Training/tree/main/code/UnixShell1"><code class="docutils literal notranslate"><span class="pre">./code/UnixShell1/</span></code></a> directory.</p>
+<div>
+  <iframe id="inlineFrameExample"
+      title="Inline Frame Example"
+      width="100%"
+      height="700"
+      src="https://drive.google.com/file/d/18eTLp_FhWFYgAItIZnX6gesIvg91rXW5/preview?usp=sharing">
+  </iframe>
+</div>
+</section>
+<section id="exercises">
+<span id="secpythonintroexercises"></span><h2><span class="section-number">1.7. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<div class="exercise green admonition" id="ExerPythonIntro">
+
+<p class="admonition-title"><span class="caption-number">Exercise 1.1 </span> (Python introduction)</p>
+<section id="exercise-content">
+<p>Read the BYU ACME “<a class="reference external" href="https://drive.google.com/file/d/1CHl8C-QKgs8jHzsRfJSMWkVqq0elzP1F/view?usp=sharing">Introduction to Python</a>” lab and complete Problems 1 through 8 in the lab. <span id="id3">[<a class="reference internal" href="../UN-OG-Training_references.html#id22" title="BYU ACME. Introduction to python. In BYU ACME 2023-2024 Incoming Junior Materials, chapter 2. 2023. URL: https://acme.byu.edu/2023-2024-materials.">BYU ACME, 2023</a>]</span></p>
+</section>
+</div>
+<div class="exercise green admonition" id="ExerUnix1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 1.2 </span> (OPTIONAL: Unix shell commands)</p>
+<section id="exercise-content">
+<p>Read the BYU ACME “<a class="reference external" href="https://drive.google.com/file/d/18eTLp_FhWFYgAItIZnX6gesIvg91rXW5/view?usp=sharing">Unix Shell 1: Introduction</a>” lab and complete Problems 1 through 7 in the lab. <span id="id4">[<a class="reference internal" href="../UN-OG-Training_references.html#id25" title="BYU ACME. Unix shell 1: introduction. In BYU ACME 2023-2024 Incoming Junior Materials, chapter 1. 2023. URL: https://acme.byu.edu/2023-2024-materials.">BYU ACME, 2023</a>]</span></p>
+</section>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">United Nations OG-Core Overlapping Generations Model Training</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="StandardLibrary.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Python Standard Library</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-python">1.1. Overview of Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-python">1.2. Installing Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-python">1.3. Working with Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-packages">1.4. Python Packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-training-topics">1.5. Python Training Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-using-the-unix-shell">1.6. (Optional): Using the Unix Shell</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">1.7. Exercises</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jason DeBacker and Richard W. Evans
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

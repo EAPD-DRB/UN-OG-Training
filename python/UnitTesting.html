@@ -1,0 +1,629 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>11. Unit Testing &#8212; UN OG-Core Overlapping Generations Model Training</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=9e0bd4b9" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python/UnitTesting';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12. Git and GitHub" href="../git/intro.html" />
+    <link rel="prev" title="10. Docstrings and Documentation" href="DocStrings.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/UN-OG-Training_logo_long.png" class="logo__image only-light" alt="UN OG-Core Overlapping Generations Model Training - Home"/>
+    <script>document.write(`<img src="../_static/UN-OG-Training_logo_long.png" class="logo__image only-dark" alt="UN OG-Core Overlapping Generations Model Training - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    United Nations OG-Core Overlapping Generations Model Training
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding in Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StandardLibrary.html">2. Python Standard Library</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="ExceptionsIO.html">4. Exception Handling and File Input/Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OOP.html">5. Object Oriented Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NumPy.html">6. NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pandas.html">7. Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Matplotlib.html">8. Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SciPy.html">9. SciPy: Root finding, minimizing, interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DocStrings.html">10. Docstrings and Documentation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. Unit Testing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git and GitHub</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../git/intro.html">12. Git and GitHub</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OG Macro Model</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../OG/intro.html">13. Overlapping Generations Macro Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OG/Install.html">14. Installing <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OG/Simulation.html">15. Simulating <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OG/Output.html">16. <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code> Output</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../OG/Calibration.html">17. Calibrating the <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code> model</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../OG/Demographics.html">17.1. Demographics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OG/MacroParams.html">17.2. Macro parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OG/FiscalParams.html">17.3. Fiscal Policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OG/Earnings.html">17.4. Earnings Processes</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendix/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/intro.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UN-OG-Training_AnswerTemplate.html">UN OG Training: Exercise Answer Template</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../UN-OG-Training_references.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/EAPD-DRB/UN-OG-Training" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/EAPD-DRB/UN-OG-Training/issues/new?title=Issue%20on%20page%20%2Fpython/UnitTesting.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/python/UnitTesting.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Unit Testing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytest">11.1. PyTest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-coverage">11.2. Code coverage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-integration-testing-and-github-actions">11.3. Continuous integration testing and GitHub Actions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">11.4. Exercises</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="unit-testing">
+<span id="chap-unittesting"></span><h1><span class="section-number">11. </span>Unit Testing<a class="headerlink" href="#unit-testing" title="Link to this heading">#</a></h1>
+<p>As a code base expands and the scripts and modules become more interdependent and interconnected, the probability increases that additions to the code will introduce bugs. And as the code base becomes bigger, the harder it can be to find bugs. One of the primary ways to protect the functionality of a code base from bugs is unit testing.</p>
+<section id="pytest">
+<span id="secunittestpytest"></span><h2><span class="section-number">11.1. </span>PyTest<a class="headerlink" href="#pytest" title="Link to this heading">#</a></h2>
+<p>Testing of your source code is important to ensure that the results of your code are accurate and to cut down on debugging time.  Fortunately, <code class="docutils literal notranslate"><span class="pre">Python</span></code> has a nice suite of tools for unit testing. In this section, we will introduce the <code class="docutils literal notranslate"><span class="pre">pytest</span></code> package and show how to use it to test your code.</p>
+<p>The iframe below contains a PDF of the BYU ACME open-access lab entitled, “<a class="reference external" href="https://drive.google.com/file/d/1109ci_tqZz30C2ymf0Hs3UO66l865U0-/view?usp=sharing">Unit Testing</a>”. You can either scroll through the lab on this page using the iframe window, or you can download the PDF for use on your computer. See <span id="id1">[<a class="reference internal" href="../UN-OG-Training_references.html#id24" title="BYU ACME. Unit testing. In BYU ACME 2023-2024 Incoming Junior Materials, chapter 8. 2023. URL: https://acme.byu.edu/2023-2024-materials.">BYU ACME, 2023</a>]</span>. <a class="reference internal" href="#ExerTest-acme"><span class="std std-numref">Exercise 11.1</span></a> below has you work through the problems in this BYU ACME lab. Two Python scripts (<a class="reference external" href="https://github.com/EAPD-DRB/UN-OG-Training/tree/main/code/UnitTest/specs.py"><code class="docutils literal notranslate"><span class="pre">specs.py</span></code></a> and <a class="reference external" href="https://github.com/EAPD-DRB/UN-OG-Training/tree/main/code/UnitTest/test_specs.py"><code class="docutils literal notranslate"><span class="pre">test_specs.py</span></code></a>) used in the lab are stored in the <a class="reference external" href="https://github.com/EAPD-DRB/UN-OG-Training/tree/main/code/UnitTest"><code class="docutils literal notranslate"><span class="pre">./code/UnitTest/</span></code></a> directory.</p>
+<div>
+  <iframe id="inlineFrameExample"
+      title="Inline Frame Example"
+      width="100%"
+      height="700"
+      src="https://drive.google.com/file/d/1109ci_tqZz30C2ymf0Hs3UO66l865U0-/preview?usp=sharing">
+  </iframe>
+</div>
+</section>
+<section id="code-coverage">
+<span id="secunittestcodecov"></span><h2><span class="section-number">11.2. </span>Code coverage<a class="headerlink" href="#code-coverage" title="Link to this heading">#</a></h2>
+<p>Ideally, one wants to make sure that all of their source code is tested, thereby ensuring it is producing expected results and reducing the potential that new contributions will introduce bugs.  But for any significant code base, it is difficult to know which lines of code are tested and which are.  To get an understanding of what is covered by unit tests, packages like <a class="reference external" href="https://coverage.readthedocs.io/en/7.3.2/#"><code class="docutils literal notranslate"><span class="pre">coverage.py</span></code></a> can be used to automatically generate a report of code coverage.  The report will show which lines of code are covered by unit tests and which are not.  This can be useful for identifying parts of the code that need more testing.</p>
+</section>
+<section id="continuous-integration-testing-and-github-actions">
+<span id="secunittestghactions"></span><h2><span class="section-number">11.3. </span>Continuous integration testing and GitHub Actions<a class="headerlink" href="#continuous-integration-testing-and-github-actions" title="Link to this heading">#</a></h2>
+<p>When using GitHub to collaborate with others on a code base, one can leverage the ability to use <a class="reference external" href="https://github.com/features/actions">GitHub Actions</a> to automate unit testing and code coverage reports (as well as other checks on might want to run).  GitHub actions are specified in yaml files and triggered by some set event (e.g., a push, or a pull request, or a chronological schedule).  One of the most effective ways to ensure new contributions are not introducing bugs is to run unit tests and code coverage reports on every push to the repository.  This can be done by creating a GitHub action that runs the unit tests and code coverage report on every push to the repository.  <a class="reference external" href="https://about.codecov.io">Codecov</a> provides some useful tools for reporting code coverage from unit tests in GitHub Actions.  You can see the actions <code class="docutils literal notranslate"><span class="pre">OG-Core</span></code> uses <a class="reference external" href="https://github.com/PSLmodels/OG-Core/tree/master/.github/workflows">here</a>.  These include unit tests and coverage reports, as well as checks that documentation builds and then is published upon a merge to the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch.</p>
+</section>
+<section id="exercises">
+<span id="secunittestexercises"></span><h2><span class="section-number">11.4. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<div class="exercise green admonition" id="ExerTest-acme">
+
+<p class="admonition-title"><span class="caption-number">Exercise 11.1 </span></p>
+<section id="exercise-content">
+<p>Read the BYU ACME “<a class="reference external" href="https://drive.google.com/file/d/1109ci_tqZz30C2ymf0Hs3UO66l865U0-/view?usp=sharing">Unit Testing</a>” lab and complete Problems 1 through 6 in the lab. <span id="id2">[<a class="reference internal" href="../UN-OG-Training_references.html#id24" title="BYU ACME. Unit testing. In BYU ACME 2023-2024 Incoming Junior Materials, chapter 8. 2023. URL: https://acme.byu.edu/2023-2024-materials.">BYU ACME, 2023</a>]</span></p>
+</section>
+</div>
+<div class="exercise green admonition" id="ExerTest-assert_value">
+
+<p class="admonition-title"><span class="caption-number">Exercise 11.2 </span></p>
+<section id="exercise-content">
+<p>In Chapter <a class="reference internal" href="SciPy.html#chap-scipy"><span class="std std-ref">SciPy: Root finding, minimizing, interpolation</span></a>, <a class="reference internal" href="SciPy.html#ExerScipy-root-lin"><span class="std std-numref">Exercise 9.1</span></a>, you wrote wrote a function, and called <code class="docutils literal notranslate"><span class="pre">SciPy.optimize</span></code> to minimize that function. This function had an analytical solution so you could check that SciPy obtained the correct constrained minimum. Now, write a <code class="docutils literal notranslate"><span class="pre">test_min</span></code> function in a module named <code class="docutils literal notranslate"><span class="pre">test_exercises.py</span></code>.  This function should end with an assert statement that the minimum value of the function is equal to the analytical solution.  Then, run the test using <code class="docutils literal notranslate"><span class="pre">pytest</span></code> and make sure it passes. Note, if your wrote the original function for <a class="reference internal" href="SciPy.html#ExerScipy-root-lin"><span class="std std-numref">Exercise 9.1</span></a> in a notebook, copy it over to a module can save it as <code class="docutils literal notranslate"><span class="pre">exercises.py</span></code>.</p>
+</section>
+</div>
+<div class="exercise green admonition" id="ExerTest-assert_type">
+
+<p class="admonition-title"><span class="caption-number">Exercise 11.3 </span></p>
+<section id="exercise-content">
+<p>Write another test in your <code class="docutils literal notranslate"><span class="pre">test_exercises.py</span></code> module that uses an assert statement to test that the type of the output of your <code class="docutils literal notranslate"><span class="pre">test_min</span></code> function is a NumPy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> object.  Then, run the test using <code class="docutils literal notranslate"><span class="pre">pytest</span></code> and make sure it passes.</p>
+</section>
+</div>
+<div class="exercise green admonition" id="ExerTest-parameterize">
+
+<p class="admonition-title"><span class="caption-number">Exercise 11.4 </span></p>
+<section id="exercise-content">
+<p>Write a simple function that returns the sum of two digits:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+</div>
+<p>Save this in a module called <code class="docutils literal notranslate"><span class="pre">exercises.py</span></code>.  Now, use the <code class="docutils literal notranslate"><span class="pre">&#64;pytest.mark.parametrize</span></code> decorator to test a function for multiple inputs of <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p>
+</section>
+</div>
+<div class="exercise green admonition" id="ExerTest-markers">
+
+<p class="admonition-title"><span class="caption-number">Exercise 11.5 </span></p>
+<section id="exercise-content">
+<p>Use the <code class="docutils literal notranslate"><span class="pre">&#64;pytest.mark</span></code> decorator to mark one of your tests in <code class="docutils literal notranslate"><span class="pre">test_exercises.py</span></code>.  Then, your tests using <code class="docutils literal notranslate"><span class="pre">pytest</span></code> but in a way that skips tests with the marker you just gave.</p>
+</section>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="DocStrings.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Docstrings and Documentation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../git/intro.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Git and GitHub</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytest">11.1. PyTest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-coverage">11.2. Code coverage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-integration-testing-and-github-actions">11.3. Continuous integration testing and GitHub Actions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">11.4. Exercises</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jason DeBacker and Richard W. Evans
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
