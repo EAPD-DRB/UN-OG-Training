@@ -1,0 +1,18 @@
+name: un-og-training-probs
+channels:
+- conda-forge
+dependencies:
+- python>=3.10, <3.13
+- numpy
+- scipy
+- pandas
+- ipython
+- matplotlib
+- bokeh
+- jupyter
+- pip
+- pip:
+  - ogcore
+  - ogusa
+  - linecheck
+  - git+https://github.com/EAPD-DRB/OG-ZAF.git
