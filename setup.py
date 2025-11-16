@@ -7,7 +7,7 @@ with open("README.md", "r") as readme_file:
 
 setup(
     name="UN-OG-Training",
-    version="0.0.4",
+    version="0.0.5",
     author="Jason DeBacker and Richard W. Evans",
     author_email="rickecon@gmail.com",
     long_description=readme,
@@ -17,8 +17,8 @@ setup(
         "License :: OSI Approved :: GNU Affero General Public License v3",
         "Operating System :: POSIX",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3.10",
-        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
         "Topic :: Scientific/Engineering :: Information Analysis",
     ],
     description="UN open source OG-Core overlapping generations macroeconomic model training",
@@ -40,7 +40,7 @@ setup(
         "sphinxcontrib-bibtex>=2.0.0",
         "sphinx-math-dollar",
         "pydata-sphinx-theme",
-        "jupyter-book>=0.11.3",
+        "jupyter-book<2.0.0",
         "jupyter",
         "black",
         "setuptools",
@@ -52,7 +52,7 @@ setup(
         "linecheck",
         "yaml-changelog",
     ],
-    python_requires=">=3.7.7, <3.12",
+    python_requires=">3.11, <3.14",
     tests_require=["pytest"],
     packages=find_packages(),
 )
