@@ -40,7 +40,7 @@ setup(
         "sphinxcontrib-bibtex>=2.0.0",
         "sphinx-math-dollar",
         "pydata-sphinx-theme",
-        "jupyter-book>=0.11.3",
+        "jupyter-book<2.0.0",
         "jupyter",
         "black",
         "setuptools",
